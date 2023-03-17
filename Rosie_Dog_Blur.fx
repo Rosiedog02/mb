@@ -2,8 +2,8 @@
 // Motion Blur Shader for ReShade
 // Author: rosie_dog
 // Based on  JakobPCoder's LinearMotionBlur.fx
-   - https://creativecommons.org/licenses/by-nc/4.0/
-   - https://creativecommons.org/licenses/by-nc/4.0/legalcode
+// https://creativecommons.org/licenses/by-nc/4.0/
+// https://creativecommons.org/licenses/by-nc/4.0/legalcode
 // -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
