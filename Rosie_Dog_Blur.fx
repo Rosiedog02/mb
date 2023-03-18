@@ -21,43 +21,44 @@ uniform float frametime <source = "frametime";>;
 // User Interface
 // -----------------------------------------------------------------------------
 // Motion Blur Category
+
 uniform float UI_BLUR_LENGTH < __UNIFORM_SLIDER_FLOAT1
     ui_min = 0.1; ui_max = 1.0; ui_step = 0.01;
-    ui_tooltip = "Adjusts the length of the motion blur.";
+    ui_tooltip = "Adjusts the length of the motion blur. Higher values result in a longer blur trail, while lower values result in a shorter blur trail.";
     ui_label = "Blur Length";
     ui_category = "Motion Blur";
 > = 0.25;
 
 uniform int UI_BLUR_SAMPLES_MAX < __UNIFORM_SLIDER_INT1
     ui_min = 3; ui_max = 32; ui_step = 1;
-    ui_tooltip = "Adjusts the maximum number of samples used for motion blur.";
+    ui_tooltip = "Adjusts the maximum number of samples used for motion blur. Higher values provide more accurate blur but may decrease performance. Lower values are faster but may produce less accurate blur.";
     ui_label = "Samples";
     ui_category = "Motion Blur";
 > = 5;
 
 uniform bool UI_HQ_SAMPLING <
     ui_label = "High Quality Resampling";
-    ui_tooltip = "Enables high-quality resampling for improved motion blur.";
+    ui_tooltip = "Enables high-quality resampling for improved motion blur. This option may result in better-looking blur but may also reduce performance.";
     ui_category = "Motion Blur";
 > = false;
 
 uniform float UI_DEPTH_THRESHOLD < __UNIFORM_SLIDER_FLOAT1
     ui_min = 0.001; ui_max = 0.1; ui_step = 0.001;
-    ui_tooltip = "Depth threshold for the motion blur.";
+    ui_tooltip = "Depth threshold for the motion blur. Controls the tolerance for depth differences between objects. Lower values result in more accurate per-object blur but may produce artifacts, while higher values result in less accurate per-object blur but reduce artifacts.";
     ui_label = "Depth Threshold";
     ui_category = "Motion Blur";
 > = 0.01;
 
 uniform float UI_GAUSSIAN_SIGMA < __UNIFORM_SLIDER_FLOAT1
     ui_min = 0.1; ui_max = 3.0; ui_step = 0.1;
-    ui_tooltip = "Gaussian blur sigma value.";
+    ui_tooltip = "Gaussian blur sigma value. Controls the smoothness of the motion blur. Higher values result in a smoother blur, while lower values produce a sharper blur.";
     ui_label = "Gaussian Sigma";
     ui_category = "Motion Blur";
 > = 1.0;
 
 uniform float UI_BILATERAL_DEPTH_SIGMA < __UNIFORM_SLIDER_FLOAT1
     ui_min = 0.001; ui_max = 0.1; ui_step = 0.001;
-    ui_tooltip = "Bilateral blur depth sigma value.";
+    ui_tooltip = "Bilateral blur depth sigma value. Controls the sensitivity of the bilateral filter to depth differences. Lower values result in a sharper depth separation, while higher values produce a smoother depth separation.";
     ui_label = "Bilateral Depth Sigma";
     ui_category = "Motion Blur";
 > = 0.01;
@@ -163,7 +164,7 @@ float4 BlurPS(float4 position : SV_Position, float2 texcoord : TEXCOORD) : SV_Ta
     return weightSum > 0.0001 ? (summedSamples / weightSum) : tex2D(samplerColor, texcoord);
 }
 
-technique LinearMotionBlur
+technique MotionBlur
 {
     pass PassBlur
     {
