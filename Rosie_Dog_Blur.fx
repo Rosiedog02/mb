@@ -22,7 +22,7 @@ uniform float frametime <source = "frametime";>;
 // -----------------------------------------------------------------------------
 // Motion Blur Category
 uniform float UI_BLUR_LENGTH < __UNIFORM_SLIDER_FLOAT1
-    ui_min = 0.1; ui_max = 1.0; ui_step = 0.01;
+    ui_min = 0.1; ui_max = 2.0; ui_step = 0.01;
     ui_tooltip = "Adjusts the length of the motion blur. Higher values result in a longer blur trail, while lower values result in a shorter blur trail.";
     ui_label = "Blur Length";
     ui_category = "Motion Blur";
